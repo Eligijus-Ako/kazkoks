@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30ED5C5C-62D2-4D1D-B2E2-5DABA9F4E8AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DeltaPlugin</RootNamespace>
+    <AssemblyName>DeltaPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>E:\DMC\DMC Demo 1.6.6\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>C:\SetupGenerator\DeltaPLC\any\Plugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base, Version=1.6.6.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\DMC\DMC Demo 1.6.6\Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\DMC\DMC Demo 1.6.6\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Easel.Common">
+      <HintPath>..\..\Easel4DMC\EaselServiceTester\packages\Easel.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\DMC\DMC Demo 1.6.6\GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Delta.cs" />
+    <Compile Include="DeltaPLCCommandGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeltaPLCCommandGUI.Designer.cs">
+      <DependentUpon>DeltaPLCCommandGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeltaIO.cs" />
+    <Compile Include="DeltaPLCModbus.cs" />
+    <Compile Include="InfoItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InfoItem.Designer.cs">
+      <DependentUpon>InfoItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugin.cs" />
+    <Compile Include="PluginSettings.cs" />
+    <Compile Include="PluginSettingsGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluginSettingsGUI.Designer.cs">
+      <DependentUpon>PluginSettingsGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RibbonGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RibbonGUI.Designer.cs">
+      <DependentUpon>RibbonGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RibbonItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RibbonItem.Designer.cs">
+      <DependentUpon>RibbonItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatusGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatusGUI.Designer.cs">
+      <DependentUpon>StatusGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolGUI.Designer.cs">
+      <DependentUpon>ToolGUI.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DeltaPLCCommandGUI.resx">
+      <DependentUpon>DeltaPLCCommandGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoItem.resx">
+      <DependentUpon>InfoItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettingsGUI.resx">
+      <DependentUpon>PluginSettingsGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RibbonGUI.resx">
+      <DependentUpon>RibbonGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RibbonItem.resx">
+      <DependentUpon>RibbonItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusGUI.resx">
+      <DependentUpon>StatusGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolGUI.resx">
+      <DependentUpon>ToolGUI.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\audio_console_48.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
