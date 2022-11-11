@@ -150,7 +150,7 @@ namespace DeltaPlugin
                 
                 Newtonsoft.Json.JsonConvert.PopulateObject(desc, delta);
                 delta.ExportCommandList();
-                DeltaPLCModbus.Instance.Connect();
+                DeltaPLCModbus.Instance.Connect(settings.PollTime);
 
                 Functions.Action(this, $"Delta started: {DeltaPLCModbus.Instance.Connected()}");
                 Functions.Action(this, $"Delta status: {DeltaPLCModbus.Instance.GetStatus()}");
@@ -331,7 +331,7 @@ namespace DeltaPlugin
                             case "D":   //Data register
                                 var d = int.Parse(plcVar.Substring(1));
                                 val = DeltaPLCModbus.Instance.GetRegister(d).ToString();
-                                v.Value = ComputeToDec(formula, val).ToString();
+                                v.Value = ComputeToDec(formula, val).ToString().Replace(',','.');
                                 break;
                             case "X":   //Input
                                 var x = int.Parse(plcVar.Substring(1));
@@ -351,7 +351,7 @@ namespace DeltaPlugin
                                 break;
                         }
 
-                        Console.WriteLine(v.DisplayName + " " + v.Value);
+                        //Console.WriteLine(v.DisplayName + " " + v.Value);
                     }
 
                     //Task.Run(() => this.delta.Update(newDelta));
@@ -360,7 +360,7 @@ namespace DeltaPlugin
                 }
                 catch (Exception e)
                 {
-                    Functions.Error($"Exception while polling DeltaPLC service. {e.Message}", true);
+                    Functions.Error($"Exception while polling Delta PLC.\r\n {e.ToString()}", true);
                 }
             }
         }
@@ -414,8 +414,14 @@ namespace DeltaPlugin
                     break;
                 case "Y":   //Output
                     var y = int.Parse(plcCmd.Substring(1));
+
                     var b = ComputeToBool(formula, value);
                     DeltaPLCModbus.Instance.SetOutput(y, b);
+                    break;
+                case "M":   //Memory
+                    var m = int.Parse(plcCmd.Substring(1));
+                    b = ComputeToBool(formula, value);
+                    DeltaPLCModbus.Instance.SetMemory(m, b);
                     break;
             }
 
@@ -522,12 +528,21 @@ namespace DeltaPlugin
 
         private string Compute(string formula, string value)
         {
-            var dataTable= new System.Data.DataTable();
-            char nds = Convert.ToChar(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-            var v = value.Replace('.', nds).Replace(',', nds);
-            var f = formula.Replace("VALUE", v);
-            object obj = dataTable.Compute(f, "");
-            string ret = obj.ToString().Replace('.', nds).Replace(',', nds);
+            string ret = "";
+            try
+            {
+                var dataTable = new System.Data.DataTable();
+                char nds = Convert.ToChar(System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                var v = value.Replace('.', nds).Replace(',', nds);
+                var f = formula.Replace("VALUE", v);
+                object obj = dataTable.Compute(f, "");
+                ret = obj.ToString().Replace('.', nds).Replace(',', nds);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "\r\n" + formula + "\r\n" + value );
+            }
+
             return ret;
         }
 
@@ -540,21 +555,26 @@ namespace DeltaPlugin
             {
                 res = res.Substring(0, pos);
             }
-            return int.Parse(res);
+            var r = 0;
+            return int.TryParse(res, out r) ? r : 0;
         }
 
         private decimal ComputeToDec(string formula, string intVal)
         {
             var d100 = Compute(formula, intVal.ToString());
-            decimal res = decimal.Parse(d100) / 100;
-            return res;
+            decimal d = 0;
+            return decimal.TryParse(d100, out d) ? d/100 : 0;
         }
 
         private bool ComputeToBool(string formula, string intVal)
         {
-            var i = int.Parse(intVal);
-            var res = Compute(formula, i.ToString());
-            return res.Equals("1");
+            var i = 0;
+            var res = "0";
+            if (int.TryParse(intVal, out i)){
+                res = Compute(formula, i.ToString());
+                return res.Equals("1");
+            }
+            return false;
         }
     }
 }

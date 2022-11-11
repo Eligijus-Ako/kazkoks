@@ -19,6 +19,7 @@ namespace DeltaTCPClient
         static readonly int modbusHeaderLength = 9;
         static byte[] PlcInputs;
         static byte[] PlcOutputs;
+        static byte[] PlcMemory;
         static byte[] PlcRegisters;
 
 
@@ -74,6 +75,16 @@ namespace DeltaTCPClient
             return res;
         }
 
+        public int GetMemory(int address)
+        {
+            byte h = (byte)(address / 8);
+            byte l = (byte)(address % 8);
+            byte mask = (byte)(0x80 >> l);
+            int res = (PlcMemory[h] & mask) > 0 ? 1 : 0;
+            //Console.WriteLine(BitConverter.ToString(PlcInputs).Replace("-", " "));
+            return res;
+        }
+
         public int GetRegister(int address)
         {
             // "00000000000000000000000000000000000003E900000000000000000000000000000002000107D2"
@@ -89,6 +100,18 @@ namespace DeltaTCPClient
             //00 05 00 00 00 06 00 05 05 00 ff 00
             int baseAddress = 1280;
             int addr = baseAddress + OctalToDecimal(address);
+            var addrHex = addr.ToString("X4");
+            string head = "00 05 00 00 00 06 00 05";
+            string tail = value ? "FF 00" : "00 00";
+            cmdQueue.Enqueue(head + addrHex + tail);
+            return 0;
+        }
+
+        public int SetMemory(int address, bool value)
+        {
+            //00 05 00 00 00 06 00 05 05 00 ff 00
+            int baseAddress = 0x800;
+            int addr = baseAddress + address;
             var addrHex = addr.ToString("X4");
             string head = "00 05 00 00 00 06 00 05";
             string tail = value ? "FF 00" : "00 00";
@@ -143,7 +166,7 @@ namespace DeltaTCPClient
                 {
                     System.Threading.Thread.Sleep(1000);
                 }
-                int p6 = pollingInterval / 6;
+                int p6 = pollingInterval /6;
                 tcpClient = new TcpClient();
 
                 try
@@ -167,6 +190,12 @@ namespace DeltaTCPClient
                         Pause(p6);
                         PollRegisters();
                         Pause(p6);
+
+                        SendCommand(cmdQueue);
+                        Pause(p6);
+                        PollMemory();
+                        Pause(p6);
+                        //Pause(pollingInterval);
                     }
                 }
                 catch (Exception e)
@@ -200,7 +229,15 @@ namespace DeltaTCPClient
 
         private static void PollInputs()
         {
-            string hexCmd = "00 02 00 00 00 06 00 02 04_00 00_50";       // Read from address 0x400 64(0x50) inputs
+            string hexCmd = "00 02 00 00 00 06 00 02 04_00 00_50";       // Read from address 0x400 inputs
+            var rcv = SendHexStringGetBytes(tcpClient, hexCmd);
+            PlcInputs = new byte[rcv.Length - modbusHeaderLength];
+            Array.Copy(rcv, modbusHeaderLength, PlcInputs, 0, rcv.Length - modbusHeaderLength);
+        }
+
+        private static void PollMemory()
+        {
+            string hexCmd = "00 02 00 00 00 06 00 02 08_00 00_50";       // Read from address 0x800 memory
             var rcv = SendHexStringGetBytes(tcpClient, hexCmd);
             PlcInputs = new byte[rcv.Length - modbusHeaderLength];
             Array.Copy(rcv, modbusHeaderLength, PlcInputs, 0, rcv.Length - modbusHeaderLength);
