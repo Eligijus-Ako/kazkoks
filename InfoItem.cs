@@ -18,6 +18,7 @@ namespace DeltaPlugin
             set => textLabel.Text = value;
         }
 
+        private string infoItemID;
         bool boolValue = false;
         public bool BoolValue
         {
@@ -26,7 +27,12 @@ namespace DeltaPlugin
             {
                 boolValue = value;
                 valueLabel.BackColor = boolValue ? BGColorTrue : BGColorFalse;
-                valueLabel.Text = boolValue ? Base.MultiLang.Translate("On") : Base.MultiLang.Translate("Off");
+                var PositionAddress = new[] { "Y77", "Y61" };
+                if(PositionAddress.Any(infoItemID.Contains ))
+                    valueLabel.Text = boolValue ? Base.MultiLang.Translate("Home") : Base.MultiLang.Translate("Out");
+                
+                else
+                    valueLabel.Text = boolValue ? Base.MultiLang.Translate("On") : Base.MultiLang.Translate("Off");
                 valueLabel.ForeColor = boolValue ? Color.DarkSlateGray : Color.WhiteSmoke;
                 valueLabel.Font = new Font(valueLabel.Font, FontStyle.Bold);
             }
@@ -68,11 +74,12 @@ namespace DeltaPlugin
         public Color BGColorFalse { get; set; } = Color.Red;
 
 
-        public InfoItem(bool logging, bool inRibbon)
+        public InfoItem(bool logging, bool inRibbon, string inInfoItemID)
         {
             InitializeComponent();
             log.Checked = logging;
             ribbon.Checked = inRibbon;
+            infoItemID = inInfoItemID;
         }
 
         private void Log_CheckedChanged(object sender, EventArgs e)
