@@ -43,7 +43,11 @@ namespace DeltaPlugin
                     ribbonItem.ItemName = stateVariable.DisplayName;
                     ribbonItem.Name = itemName;
                     ribbonItem.Tag = stateVariable;
-                    ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "On" : "Off") : stateVariable.Value;
+                    var PositionAddress = new[] { "Y77", "Y61" };
+                    if (PositionAddress.Any(ribbonItem.Name.Contains))
+                        ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "Home" : "Out") : stateVariable.Value;
+                    else
+                        ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "On" : "Off") : stateVariable.Value;
                     if (stateVariable.IsBoolVariable)
                         ribbonItem.ValueBackgroundColor = (bool)stateVariable.ParsedValue ? Color.LimeGreen : Color.Red;
                     ribbonFlow.Controls.Add(ribbonItem);
@@ -68,7 +72,11 @@ namespace DeltaPlugin
                     {
                         RibbonItem ribbonItem = control as RibbonItem;
                         Delta.StateVariable stateVariable = (Delta.StateVariable)ribbonItem.Tag;
-                        ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "On" : "Off") : stateVariable.Value;
+                        var PositionAddress = new[] { "Y77", "Y61" };
+                        if (PositionAddress.Any(ribbonItem.Name.Contains))//(ribbonItem.Name.Contains(PositionAddress[0]) || ribbonItem.Name.Contains(PositionAddress[1]))// TAISYTA
+                            ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "Home" : "Out") : stateVariable.Value;
+                        else
+                            ribbonItem.Value = stateVariable.IsBoolVariable ? ((bool)stateVariable.ParsedValue ? "On" : "Off") : stateVariable.Value;
                         if (stateVariable.IsBoolVariable)
                             ribbonItem.ValueBackgroundColor = (bool)stateVariable.ParsedValue ? Color.LimeGreen : Color.Red;
                     }

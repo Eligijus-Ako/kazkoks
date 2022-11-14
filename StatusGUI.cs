@@ -65,7 +65,10 @@ namespace DeltaPlugin
             {
                 if (stateVariable.Hidden) continue;
 
-                InfoItem infoItem = new InfoItem(deltaPLC.IsLogged(stateVariable.Id), ribbonItems.Value.Contains(stateVariable.Id)) { Text = stateVariable.DisplayName, Tag = stateVariable.Id, Margin = new Padding(0, 3, 0, 0) };
+                InfoItem infoItem = new InfoItem(deltaPLC.IsLogged(stateVariable.Id), ribbonItems.Value.Contains(stateVariable.Id), stateVariable.Id) {
+                Text = stateVariable.DisplayName,
+                Tag = stateVariable.Id,
+                Margin = new Padding(0, 3, 0, 0) };
                 
                 infoItem.LoggingChanged += PLC_LoggingChanged;
                 infoItem.RibbonChanged += PLC_RibbonChanged;
@@ -158,11 +161,11 @@ namespace DeltaPlugin
                 if (ii != null && ii.Count() > 0)
                     return ii.First();
                 else
-                    return new InfoItem(false, false);
+                    return new InfoItem(false, false, id);
             }
             catch
             {
-                return new InfoItem(false, false);
+                return new InfoItem(false, false, id);
             }
         }
 
