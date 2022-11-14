@@ -12,7 +12,7 @@ namespace DeltaPlugin
 {
     public partial class InfoItem : UserControl
     {
-        public override string Text //
+        public override string Text //komentaras 2
         {
             get => textLabel.Text;
             set => textLabel.Text = value;
