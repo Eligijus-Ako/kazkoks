@@ -5,12 +5,12 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeltaPlugin", "DeltaPlugin.csproj", "{30ED5C5C-62D2-4D1D-B2E2-5DABA9F4E8AD}"
 EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "DMC", "E:\DMC\DMC Demo 1.6.6\DMC.exe", "{EE4E98FD-FEA0-4912-9C29-0E22AD9CC4B4}"
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "DMC", "C:\Program Files\DMC\DMC Demo 1.6.6\DMC.exe", "{EE4E98FD-FEA0-4912-9C29-0E22AD9CC4B4}"
 	ProjectSection(DebuggerProjectSystem) = preProject
 		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = E:\DMC\DMC Demo 1.6.6\DMC.exe
+		Executable = C:\Program Files\DMC\DMC Demo 1.6.6\DMC.exe
 		RemoteMachine = SAULIUSBALTRUSA
-		StartingDirectory = E:\DMC\DMC Demo 1.6.6
+		StartingDirectory = C:\Program Files\DMC\DMC Demo 1.6.6
 		Environment = Default
 		LaunchingEngine = 00000000-0000-0000-0000-000000000000
 		UseLegacyDebugEngines = No
