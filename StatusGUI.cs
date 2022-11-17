@@ -156,7 +156,7 @@ namespace DeltaPlugin
         #endregion
 
         #region HELPERS
-        InfoItem GetInfoItemById(string id) //taisyta
+        InfoItem GetInfoItemById(string id) // taisyta
         {
             try
             {
