@@ -50,82 +50,6 @@ namespace DeltaPlugin
         {
             if (!settings.Enabled) return true;
 
-            //if (settings.serviceAddress.ValueEmpty)
-            //    return Functions.ErrorF("Delta PLC service address must be provided.");
-
-            //EndpointAddress endpoint = new EndpointAddress(settings.ServiceAddress);
-            //Binding binding = null;
-
-            //if (settings.ServiceAddress.StartsWith("net.tcp"))
-            //{
-            //    binding = new NetTcpBinding(SecurityMode.None)
-            //    {
-            //        Namespace = "http://easel.lt/easelservice/2019/01"
-            //    };
-            //}
-            //else // "net.pipe
-            //{
-            //    binding = new NetNamedPipeBinding()
-            //    {
-            //        Namespace = "http://easel.lt/easelservice/2019/01"
-            //    };
-            //}
-
-            //if (binding != null)
-            //{
-            //    try
-            //    {
-            //        var channelFactory = new ChannelFactory<Interfaces.IEaselService>(binding, endpoint);
-            //        service = channelFactory.CreateChannel(endpoint);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return Functions.ErrorF("Failed to connect to Delta service. ", e);
-            //    }
-            //}
-
-            //if (service != null)
-            //{
-            //    string desc;
-            //    try
-            //    {
-            //        desc = service.Descriptor();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return Functions.ErrorF("Failed to start Delta PLC service. ", e);
-            //    }
-
-            //    delta = new Delta(settings.logFilename.Value, settings.logMethod.value, settings, settings.logInterval.value);
-            //    try
-            //    {
-            //        Newtonsoft.Json.JsonConvert.PopulateObject(desc, delta);
-            //        delta.ExportCommandList();
-            //        service.Start();
-            //        Functions.Action(this, $"Delta service started: {service.Started()}");
-            //        Functions.Action(this, $"Delta service status: {service.Status()}");
-            //        delta.StartLogging();
-            //    }
-            //    catch
-            //    {
-            //        Disconnect();
-            //    }
-
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        Disconnect();
-            //    }
-            //    catch
-            //    {
-
-            //    }
-            //    return Functions.ErrorF("Failed to connect to Delta service. Reason: No channel created.");
-            //}
-
-
 
             delta = new Delta(settings.logFilename.Value, settings.logMethod.value, settings, settings.logInterval.value);
             try
@@ -448,35 +372,6 @@ namespace DeltaPlugin
             }
             value = false;
             return false;
-
-
-
-            //Delta query = new Delta();
-            //try
-            //{
-            //    Newtonsoft.Json.JsonConvert.PopulateObject(service.Query(), query);
-            //}
-            //catch (Exception e)
-            //{
-            //    Functions.Error($"Failed to get value from Delta PLC. {e.Message}", true);
-            //    return Functions.ErrorF("Failed to get value from DeltaPLC. ", e);
-            //}
-
-
-            //Delta.StateVariable sv = query.GetStateVariableById(id);
-            //if (sv == null)
-            //    return Functions.ErrorF("ID or Register '{0}' not found in PLC.", id);
-
-            //double dval;
-            //if (bool.TryParse(sv.Value, out value))
-            //    return true;
-            //else if (double.TryParse(sv.Value, out dval))
-            //{
-            //    value = dval > 0;
-            //    return true;
-            //}
-            //else
-            //    return Functions.ErrorF("Failed to parse returned value.");
         }
 
         public bool GetValue(string id, out double value)
@@ -499,32 +394,6 @@ namespace DeltaPlugin
             }
             value = 0;
             return false;
-
-
-
-            //value = 0;
-            //if (!settings.Enabled) return Functions.ErrorF("Delta PLC is disabled in settings.");
-
-            //Delta query = new Delta();
-            //try
-            //{
-            //    Newtonsoft.Json.JsonConvert.PopulateObject(service.Query(), query);
-            //}
-            //catch (Exception e)
-            //{
-            //    Functions.Error($"Failed to get value from Delta PLC. {e.Message}", true);
-            //    return Functions.ErrorF("Failed to get value from Delta. ", e);
-            //}
-
-
-            //Delta.StateVariable sv = query.GetStateVariableById(id);
-            //if (sv == null)
-            //    return Functions.ErrorF("ID or Register '{0}' not found in PLC.", id);
-
-            //if (double.TryParse(sv.Value, out value))
-            //    return true;
-            //else
-            //    return Functions.ErrorF("Failed to parse returned value.");
         }
 
         private string Compute(string formula, string value)
