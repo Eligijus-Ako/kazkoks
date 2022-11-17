@@ -223,8 +223,7 @@ namespace DeltaPlugin
 
         internal StateVariable GetStateVariableById(string id)
         {
-            if (this.StateVariables == null) 
-                return null;
+            if (this.StateVariables == null) return null;
             foreach (var stateVariable in this.StateVariables)
                 if (stateVariable.Id == id)
                     return stateVariable;
