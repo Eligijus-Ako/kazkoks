@@ -65,11 +65,14 @@ namespace DeltaPlugin
             {
                 if (stateVariable.Hidden) continue;
 
-                InfoItem infoItem = new InfoItem(deltaPLC.IsLogged(stateVariable.Id), ribbonItems.Value.Contains(stateVariable.Id), stateVariable.Id) {
-                Text = stateVariable.DisplayName,
-                Tag = stateVariable.Id,
-                Margin = new Padding(0, 3, 0, 0) };
-                
+                // TAISYTA
+                InfoItem infoItem = new InfoItem(deltaPLC.IsLogged(stateVariable.Id), ribbonItems.Value.Contains(stateVariable.Id), stateVariable.Id)
+                {
+                    Text = stateVariable.DisplayName,
+                    Tag = stateVariable.Id,
+                    Margin = new Padding(0, 3, 0, 0)
+                };
+
                 infoItem.LoggingChanged += PLC_LoggingChanged;
                 infoItem.RibbonChanged += PLC_RibbonChanged;
                 infoItems.Add(infoItem);
@@ -153,7 +156,7 @@ namespace DeltaPlugin
         #endregion
 
         #region HELPERS
-        InfoItem GetInfoItemById(string id)
+        InfoItem GetInfoItemById(string id) //taisyta
         {
             try
             {

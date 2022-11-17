@@ -12,29 +12,29 @@ namespace DeltaPlugin
 {
     public partial class InfoItem : UserControl
     {
-
-        public override string Text // weee pakeitimas
-
+        public override string Text // Taisyta: nebuvo 'override'
         {
             get => textLabel.Text;
             set => textLabel.Text = value;
         }
 
-        private string infoItemID;
+        private string infoItemID; // TAISYTA
         bool boolValue = false;
-        public bool BoolValue
+        public bool BoolValue// TAISYTA
         {
             get => boolValue;
             set
             {
                 boolValue = value;
+
                 valueLabel.BackColor = boolValue ? BGColorTrue : BGColorFalse;
                 var PositionAddress = new[] { "Y77", "Y61" };
-                if(PositionAddress.Any(infoItemID.Contains ))
+                if (PositionAddress.Any(infoItemID.Contains))
                     valueLabel.Text = boolValue ? Base.MultiLang.Translate("Home") : Base.MultiLang.Translate("Out");
-                
+
                 else
                     valueLabel.Text = boolValue ? Base.MultiLang.Translate("On") : Base.MultiLang.Translate("Off");
+
                 valueLabel.ForeColor = boolValue ? Color.DarkSlateGray : Color.WhiteSmoke;
                 valueLabel.Font = new Font(valueLabel.Font, FontStyle.Bold);
             }
@@ -76,7 +76,7 @@ namespace DeltaPlugin
         public Color BGColorFalse { get; set; } = Color.Red;
 
 
-        public InfoItem(bool logging, bool inRibbon, string inInfoItemID)
+        public InfoItem(bool logging, bool inRibbon, string inInfoItemID) // TAISYTA
         {
             InitializeComponent();
             log.Checked = logging;
