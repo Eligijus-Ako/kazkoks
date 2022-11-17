@@ -61,7 +61,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(324, 262);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(342, 271);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tabs1
@@ -102,7 +102,7 @@
             this.setterFlow.Location = new System.Drawing.Point(0, 38);
             this.setterFlow.Margin = new System.Windows.Forms.Padding(0);
             this.setterFlow.Name = "setterFlow";
-            this.setterFlow.Size = new System.Drawing.Size(324, 123);
+            this.setterFlow.Size = new System.Drawing.Size(342, 129);
             this.setterFlow.TabIndex = 2;
             // 
             // setEnabled
@@ -129,7 +129,7 @@
             this.setBlock.Location = new System.Drawing.Point(0, 29);
             this.setBlock.Margin = new System.Windows.Forms.Padding(0);
             this.setBlock.Name = "setBlock";
-            this.setBlock.Size = new System.Drawing.Size(324, 94);
+            this.setBlock.Size = new System.Drawing.Size(342, 100);
             this.setBlock.TabIndex = 1;
             // 
             // setCommandSelector
@@ -141,7 +141,7 @@
             this.setCommandSelector.Location = new System.Drawing.Point(0, 0);
             this.setCommandSelector.Margin = new System.Windows.Forms.Padding(0);
             this.setCommandSelector.Name = "setCommandSelector";
-            this.setCommandSelector.Size = new System.Drawing.Size(303, 24);
+            this.setCommandSelector.Size = new System.Drawing.Size(303, 27);
             this.setCommandSelector.TabIndex = 0;
             this.setCommandSelector.ValueOnlyFromList = true;
             this.setCommandSelector.StringParameterFieldChanged += new Base.StringParameterFieldChangedDelegate(this.CommandSelector_StringParameterFieldChanged);
@@ -152,7 +152,7 @@
             this.setCommand.AutoSize = true;
             this.setCommand.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.setCommand.CanBeEmpty = false;
-            this.setCommand.Location = new System.Drawing.Point(0, 24);
+            this.setCommand.Location = new System.Drawing.Point(0, 27);
             this.setCommand.Margin = new System.Windows.Forms.Padding(0);
             this.setCommand.Name = "setCommand";
             this.setCommand.Size = new System.Drawing.Size(303, 24);
@@ -165,7 +165,7 @@
             this.value.AutoSize = true;
             this.value.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.value.CanBeEmpty = false;
-            this.value.Location = new System.Drawing.Point(0, 48);
+            this.value.Location = new System.Drawing.Point(0, 51);
             this.value.Margin = new System.Windows.Forms.Padding(0);
             this.value.Name = "value";
             this.value.Size = new System.Drawing.Size(303, 24);
@@ -181,12 +181,12 @@
             this.boolValue.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.boolValue.IsCheckedFirst = false;
             this.boolValue.IsCheckedSecond = false;
-            this.boolValue.Location = new System.Drawing.Point(0, 72);
+            this.boolValue.Location = new System.Drawing.Point(0, 75);
             this.boolValue.Margin = new System.Windows.Forms.Padding(0);
             this.boolValue.Name = "boolValue";
             this.boolValue.Shift = 0;
             this.boolValue.Shift2 = 0;
-            this.boolValue.Size = new System.Drawing.Size(324, 22);
+            this.boolValue.Size = new System.Drawing.Size(342, 25);
             this.boolValue.TabIndex = 1;
             this.boolValue.ParameterFieldValueChanged += new Base.GUI.ParameterFieldValueChangedDelegate(this.BoolValue_ParameterFieldValueChanged);
             // 
@@ -197,10 +197,10 @@
             this.getterFlow.Controls.Add(this.getEnabled);
             this.getterFlow.Controls.Add(this.getBlock);
             this.getterFlow.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.getterFlow.Location = new System.Drawing.Point(0, 161);
+            this.getterFlow.Location = new System.Drawing.Point(0, 167);
             this.getterFlow.Margin = new System.Windows.Forms.Padding(0);
             this.getterFlow.Name = "getterFlow";
-            this.getterFlow.Size = new System.Drawing.Size(312, 101);
+            this.getterFlow.Size = new System.Drawing.Size(312, 104);
             this.getterFlow.TabIndex = 2;
             // 
             // getEnabled
@@ -226,7 +226,7 @@
             this.getBlock.Location = new System.Drawing.Point(0, 29);
             this.getBlock.Margin = new System.Windows.Forms.Padding(0);
             this.getBlock.Name = "getBlock";
-            this.getBlock.Size = new System.Drawing.Size(303, 72);
+            this.getBlock.Size = new System.Drawing.Size(303, 75);
             this.getBlock.TabIndex = 3;
             // 
             // getCommandSelector
@@ -238,7 +238,7 @@
             this.getCommandSelector.Location = new System.Drawing.Point(0, 0);
             this.getCommandSelector.Margin = new System.Windows.Forms.Padding(0);
             this.getCommandSelector.Name = "getCommandSelector";
-            this.getCommandSelector.Size = new System.Drawing.Size(303, 24);
+            this.getCommandSelector.Size = new System.Drawing.Size(303, 27);
             this.getCommandSelector.TabIndex = 0;
             this.getCommandSelector.ValueOnlyFromList = true;
             this.getCommandSelector.StringParameterFieldChanged += new Base.StringParameterFieldChangedDelegate(this.CommandSelector_StringParameterFieldChanged);
@@ -249,7 +249,7 @@
             this.getCommand.AutoSize = true;
             this.getCommand.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.getCommand.CanBeEmpty = false;
-            this.getCommand.Location = new System.Drawing.Point(0, 24);
+            this.getCommand.Location = new System.Drawing.Point(0, 27);
             this.getCommand.Margin = new System.Windows.Forms.Padding(0);
             this.getCommand.Name = "getCommand";
             this.getCommand.Size = new System.Drawing.Size(303, 24);
@@ -262,7 +262,7 @@
             this.plcVariable.AutoSize = true;
             this.plcVariable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.plcVariable.CanBeEmpty = false;
-            this.plcVariable.Location = new System.Drawing.Point(0, 48);
+            this.plcVariable.Location = new System.Drawing.Point(0, 51);
             this.plcVariable.Margin = new System.Windows.Forms.Padding(0);
             this.plcVariable.Name = "plcVariable";
             this.plcVariable.Size = new System.Drawing.Size(303, 24);
@@ -271,13 +271,13 @@
             // 
             // DeltaCommandGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Name = "DeltaPLCCommandGUI";
-            this.Size = new System.Drawing.Size(324, 262);
+            this.Name = "DeltaCommandGUI";
+            this.Size = new System.Drawing.Size(342, 271);
             this.VisibleChanged += new System.EventHandler(this.DeltaCommandGUI_VisibleChanged);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();

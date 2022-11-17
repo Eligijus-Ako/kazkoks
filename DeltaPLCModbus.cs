@@ -70,7 +70,7 @@ namespace DeltaTCPClient
             byte h = (byte)(address / 10);
             byte l = (byte)(address % 10);
             byte mask = (byte)(0b01 << l);
-            int res = (PlcInputs[h] & mask) > 0 ? 1 : 0;
+            int res = (PlcInputs[h] & mask) > 0 ? 1 : 0; // sustoja
             //Console.WriteLine(BitConverter.ToString(PlcInputs).Replace("-", " "));
             return res;
         }
@@ -229,7 +229,7 @@ namespace DeltaTCPClient
 
         private static void PollInputs()
         {
-            string hexCmd = "00 02 00 00 00 06 00 02 04_00 00_50";       // Read from address 0x400 inputs
+            string hexCmd = "00 02 00 00 00 06 00 02 04_00 00_50";       // Read from address 0x400 inputss
             var rcv = SendHexStringGetBytes(tcpClient, hexCmd);
             PlcInputs = new byte[rcv.Length - modbusHeaderLength];
             Array.Copy(rcv, modbusHeaderLength, PlcInputs, 0, rcv.Length - modbusHeaderLength);

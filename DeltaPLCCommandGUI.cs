@@ -205,7 +205,7 @@ namespace DeltaPlugin
 
             if (parameters.setEnabled.value)
             {
-                if (parameters.setCommand.ValueEmpty) return Functions.ErrorF("PLC Command ID or Register must be set.");
+                if (parameters.setCommand.ValueEmpty) return Functions.ErrorF("PLC Command ID or Register must be set."); //kazka
 
                 if (State.is_connected_to_hardware)
                 {

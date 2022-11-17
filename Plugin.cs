@@ -483,7 +483,7 @@ namespace DeltaPlugin
         {
             value = 0;
             if (!settings.Enabled) return Functions.ErrorF("Delta PLC is disabled in settings.");
-            Delta.StateVariable sv = delta.GetStateVariableById(id);
+            Delta.StateVariable sv = delta.GetStateVariableById(id); //kazka
             if (sv != null)
             {
                 string output = Newtonsoft.Json.JsonConvert.SerializeObject(sv.Internals[0]);
@@ -492,7 +492,8 @@ namespace DeltaPlugin
                 var register = intern.Register;
 
                 var x = int.Parse(register.Substring(1));
-                var v = DeltaPLCModbus.Instance.GetInput(x).ToString();
+                //var v = DeltaPLCModbus.Instance.GetInput(x).ToString();
+                var v = DeltaPLCModbus.Instance.GetRegister(x).ToString();
                 value = Convert.ToDouble(ComputeToDec(formula, v));
                 return true;
             }
